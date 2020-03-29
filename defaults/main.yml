@@ -29,6 +29,8 @@ acme_sh_default_dns_provider: "dns_dgon"
 acme_sh_default_dns_provider_api_keys: {}
 acme_sh_default_dns_sleep: 120
 
+acme_sh_default_http_port: 8888
+
 acme_sh_default_extra_flags_issue: ""
 acme_sh_default_extra_flags_renew: ""
 acme_sh_default_extra_flags_install_cert: ""

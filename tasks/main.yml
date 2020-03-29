@@ -58,10 +58,6 @@
     - acme_sh.issue_cert
   when:
     - acme_sh_domains and item.domains is defined and item.domains
-    - item.dns_provider | default(acme_sh_default_dns_provider)
-    - item.dns_provider_api_keys | default(acme_sh_default_dns_provider_api_keys)
-    - item.force_renew is undefined or not item.force_renew
-    - item.custom_command is undefined or not item.custom_command
     - item.remove is undefined or not item.remove
     - not acme_sh_uninstall
 
