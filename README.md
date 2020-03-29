@@ -10,7 +10,7 @@ It is an [Ansible](http://www.ansible.com/home) role to:
 
 ## Why would you want to use this role?
 
-This role uses [acme.sh](https://github.com/Neilpang/acme.sh) which is a self
+This role uses [acme.sh](https://github.com/acmesh-official/acme.sh) which is a self
 contained Bash script to handle all of the complexities of issuing and
 automatically renewing your SSL certificates.
 
@@ -59,7 +59,7 @@ nginx or Apache but nothing is set in stone.
 acme_sh_become_user: "root"
 
 # The acme.sh repo to clone.
-acme_sh_git_url: "https://github.com/Neilpang/acme.sh"
+acme_sh_git_url: "https://github.com/acmesh-official/acme.sh"
 
 # The branch, tag or commit that will be cloned.
 acme_sh_git_version: "master"
@@ -147,9 +147,9 @@ acme_sh_default_debug: False
 
 # Which DNS provider should you use?
 # A list of supported providers can be found at:
-#   https://github.com/Neilpang/acme.sh#7-automatic-dns-api-integration
+#   https://github.com/acmesh-official/acme.sh#7-automatic-dns-api-integration
 # As for getting the name to use, you can find that at:
-#   https://github.com/Neilpang/acme.sh/tree/master/dnsapi
+#   https://github.com/acmesh-official/acme.sh/tree/master/dnsapi
 #
 # It defaults to DigitalOcean. Make sure to include the dns_ part of the name,
 # but leave off the .sh file extension.
@@ -157,7 +157,7 @@ acme_sh_default_dns_provider: "dns_dgon"
 
 # What are your DNS provider's API key(s)?
 # The key names to use can be found at:
-#   https://github.com/Neilpang/acme.sh/tree/master/dnsapi
+#   https://github.com/acmesh-official/acme.sh/tree/master/dnsapi
 #
 # The API key can be created on your DNS provider's website. Some providers
 # require 1 key, while others require 2+. Just add them as key / value pairs here

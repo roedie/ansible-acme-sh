@@ -15,7 +15,7 @@
     group: "{{ acme_sh_become_user }}"
     mode: "0755"
 
-- name: Git clone https://github.com/Neilpang/acme.sh
+- name: Git clone https://github.com/acmesh-official/acme.sh
   git:
     repo: "{{ acme_sh_git_url }}"
     version: "{{ acme_sh_git_version }}"
