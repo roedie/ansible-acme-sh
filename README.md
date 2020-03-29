@@ -20,7 +20,7 @@ setting your DNS provider and supplying your DNS provider's API key.
 
 It's also idempotent for every task because that's the only way I roll!
 
-#### Why is DNS based challenges the only supported method?
+#### Why are DNS based challenges and standalone mode the only supported methods?
 
 Having challenges done through DNS means you can set up your certificates before
 your web server or proxy is provisioned. It also means your web server doesn't
@@ -35,8 +35,14 @@ Also, it's nice using DNS challenges because DNS challenges are the only way to
 issue wildcard certificates using Let's Encrypt. Focusing efforts onto 1 solution
 that works with all certificate types seemed like the right move.
 
-With that said, I probably won't be supporting other modes such as standalone,
-webroot, nginx or Apache but nothing is set in stone.
+With standalone mode it is possible to create a central place to manage your SSL
+certificates. For instance it is possible to redirect the
+/.well-known/acme-challenge/ URL can be redirected to the central acme.sh server
+using NGINX or HAProxy and acme.sh can store it in Hashicorp Vault. This way
+all your certificates can be managed centrally using this Ansible role.
+
+With that said, I probably won't be supporting other modes such as webroot,
+nginx or Apache but nothing is set in stone.
 
 ## Supported platforms
 
@@ -176,6 +182,11 @@ acme_sh_default_dns_provider_api_keys: {}
 # just to be safe because this 2 minute delay will only affect you on the first
 # Ansible run. After that it will be updated in the background through a cron job.
 acme_sh_default_dns_sleep: 120
+
+# What port should be used when running in standalone mode?
+#
+# Port 80 is the default used here so the authentication can be done directly.
+acme_sh_default_http_port: 80
 
 # When issuing new certificates, you can choose to add additional flags that
 # are not present here by default. Supply them just as you would on the command
@@ -374,6 +385,8 @@ acme_sh_domains:
   - domains: ["example.com", "www.example.com"]
   - domains: ["admin.example.com"]
     force_renew: True
+
+# ------------------------------------------------------------------------------
 ```
 
 *If you're looking for an Ansible role to create users, then check out my
