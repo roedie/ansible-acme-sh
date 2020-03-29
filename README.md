@@ -258,6 +258,8 @@ acme_sh_domains:
 #
 #  If you want separate files then create a new "domains:" item in the list.
 #  - domains: ["example.com", "www.example.com", "admin.example.com"]
+#    # Use standalone mode instead of DNS.
+#    standalone: True
 #    # Optionally override the default staging variable. This overall pattern lets
 #    # you situationally override the defaults listed above for each domain list.
 #    staging: False
@@ -274,6 +276,10 @@ acme_sh_domains:
 #     "Namesilo_Key": "THE_API_SECRET_TOKEN_FROM_THE_NAMESILO_DASHBOARD"
 #    # Optionally override the default DNS sleep time.
 #    dns_sleep: 900
+#    # Optionally set the HTTP port used.
+#    http_port: 80
+#    # Optionally override the install dir.
+#    copy_certs_to_path: '/some/path'
 #    # Optionally add extra flags to any of these 3 actions:
 #    extra_flags_issue: ""
 #    extra_flags_renew: ""

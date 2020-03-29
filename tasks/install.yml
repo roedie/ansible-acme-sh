@@ -33,14 +33,6 @@
     creates: "~/.acme.sh/acme.sh"
   become_user: "{{ acme_sh_become_user }}"
 
-- name: Create certificate path
-  file:
-    path: "{{ acme_sh_copy_certs_to_path }}"
-    state: "directory"
-    owner: "{{ acme_sh_become_user }}"
-    group: "{{ acme_sh_become_user }}"
-    mode: "0755"
-
 - name: Determine if acme.sh is installed (post-install)
   stat:
     path: "~/.acme.sh/acme.sh"

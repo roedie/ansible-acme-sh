@@ -20,6 +20,6 @@
 
 - name: Remove acme.sh installed certificate files
   file:
-    path: "{{ acme_sh_copy_certs_to_path }}/{{ item.domains | first }}*"
+    path: "{{ item.copy_certs_to_path | default(acme_sh_copy_certs_to_path) }}/{{ item.domains | first }}*"
     state: "absent"
   loop: "{{ acme_sh_domains }}"

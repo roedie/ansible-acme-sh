@@ -1,8 +1,19 @@
 ---
 
+- name: Create certificate path
+  file:
+    path: "{{ copy_certs_to_path | default(acme_sh_copy_certs_to_path) }}"
+    state: "directory"
+    owner: "{{ acme_sh_become_user }}"
+    group: "{{ acme_sh_become_user }}"
+    mode: "0755"
+  loop: "{{ acme_sh_domains }}"
+  loop_control:
+    index_var: domains_index
+
 - name: Ensure installed certificates have correct user / group ownership
   file:
-    path: "{{ acme_sh_copy_certs_to_path }}/{{ item.domains | first }}*"
+    path: "{{ copy_certs_to_path | default(acme_sh_copy_certs_to_path) }}/{{ item.domains | first }}*"
     group: "{{ acme_sh_become_user }}"
     owner: "{{ acme_sh_become_user }}"
   loop:
@@ -11,8 +22,8 @@
 - name: Install acme.sh certificate(s)
   command: >-
     ./acme.sh --install-cert -d {{ item.domains | first }}
-    --key-file {{ acme_sh_copy_certs_to_path }}/{{ item.domains | first }}.key
-    --fullchain-file {{ acme_sh_copy_certs_to_path }}/{{ item.domains | first }}.pem
+    --key-file {{ item.copy_certs_to_path | default(acme_sh_copy_certs_to_path) }}/{{ item.domains | first }}.key
+    --fullchain-file {{ item.copy_certs_to_path | default(acme_sh_copy_certs_to_path) }}/{{ item.domains | first }}.pem
     --reloadcmd "{{ item.install_cert_reloadcmd | default(acme_sh_default_install_cert_reloadcmd) }}"
     {{ "--debug" if item.debug | default(acme_sh_default_debug) else "" }}
     {{ item.extra_flags_install_cert | default(acme_sh_default_extra_flags_install_cert) }}
