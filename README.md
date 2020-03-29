@@ -1,4 +1,4 @@
-## What is ansible-acme-sh? [![Build Status](https://secure.travis-ci.org/nickjj/ansible-acme-sh.png)](http://travis-ci.org/nickjj/ansible-acme-sh)
+## What is ansible-acme-sh? [![Build Status](https://secure.travis-ci.org/roedie/ansible-acme-sh.png)](http://travis-ci.org/roedie/ansible-acme-sh)
 
 It is an [Ansible](http://www.ansible.com/home) role to:
 
