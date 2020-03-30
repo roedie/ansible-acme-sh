@@ -50,6 +50,7 @@ nginx or Apache but nothing is set in stone.
 - Ubuntu 18.04 LTS (Bionic)
 - Debian 8 (Jessie)
 - Debian 9 (Stretch)
+- Debian 10 (Buster)
 
 ## Role variables
 
