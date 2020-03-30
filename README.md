@@ -119,6 +119,9 @@ acme_sh_copy_certs_to_path: "/etc/ssl/ansible"
 # You can disable this by setting it to False.
 acme_sh_list_domains: True
 
+# Set the default mode to use. This can be 'standalone' or 'DNS'.
+acme_sh_default_mode: 'DNS'
+
 # Do OCSP stapling by default
 acme_sh_default_ocsp: True
 
@@ -261,8 +264,8 @@ acme_sh_domains:
 #
 #  If you want separate files then create a new "domains:" item in the list.
 #  - domains: ["example.com", "www.example.com", "admin.example.com"]
-#    # Use standalone mode instead of DNS.
-#    standalone: True
+#    # Use standalone or DNS mode.
+#    mode: 'DNS'
 #    # Force ocsp stapling
 #    ocsp: True
 #    # Optionally override the default staging variable. This overall pattern lets

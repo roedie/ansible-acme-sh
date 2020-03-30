@@ -19,6 +19,7 @@
   loop: "{{ acme_sh_domains }}"
   become_user: "{{ acme_sh_become_user }}"
   when:
+    - item.mode | default(acme_sh_default_mode) == 'DNS'
     - item.dns_provider | default(acme_sh_default_dns_provider)
     - item.dns_provider_api_keys | default(acme_sh_default_dns_provider_api_keys)
     - item.force_renew is undefined or not item.force_renew
@@ -44,7 +45,7 @@
   loop: "{{ acme_sh_domains }}"
   become_user: "{{ acme_sh_become_user }}"
   when:
-    - item.standalone
+    - item.mode | default(acme_sh_default_mode) == 'standalone'
     - item.http_port | default(acme_sh_default_http_port)
     - item.force_renew is undefined or not item.force_renew
     - item.custom_command is undefined or not item.custom_command
