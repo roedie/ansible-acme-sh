@@ -27,6 +27,9 @@ acme_sh_default_force_renew: False
 
 acme_sh_default_debug: False
 
+acme_sh_default_deploy_envs: {}
+acme_sh_default_deploy_hook: ""
+
 acme_sh_default_mode: "DNS"
 acme_sh_default_dns_provider: "dns_dgon"
 acme_sh_default_dns_provider_api_keys: {}

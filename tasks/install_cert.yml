@@ -36,3 +36,27 @@
   register: install_cert_result
   changed_when: issue_result.results[domains_index].changed or renew_result.results[domains_index].changed
   failed_when: install_cert_result.rc != 0 and "Reload error for" not in install_cert_result.stderr
+  when:
+    - item.deploy is undefined
+
+
+- name: Deploy acme.sh certificate(s)
+  command: >-
+    ./acme.sh --deploy -d {{ item.domains | first }}
+    --deploy-hook {{ item.deploy_hook | default(acme_sh_default_deploy_hook) }}
+    {{ "--debug" if item.debug | default(acme_sh_default_debug) else "" }}
+    {{ item.extra_flags_install_cert | default(acme_sh_default_extra_flags_install_cert) }}
+  args:
+    chdir: "~/.acme.sh"
+  environment: "{{ item.deploy_envs | default(acme_sh_default_deploy_envs) }}"
+  loop: "{{ acme_sh_domains }}"
+  loop_control:
+    index_var: domains_index
+  become_user: "{{ acme_sh_become_user }}"
+  register: deploy_cert_result
+  changed_when: issue_result.results[domains_index].changed or renew_result.results[domains_index].changed
+  failed_when: deploy_cert_result.rc != 0 and "Deploy error" not in deploy_cert_result.stderr
+  when:
+    - item.deploy is defined
+    - item.deploy_envs is defined or acme_sh_default_deploy_envs is defined
+    - item.deploy_hook is defined or acme_sh_default_deploy_hook is defined
