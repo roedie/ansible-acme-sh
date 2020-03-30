@@ -16,6 +16,8 @@ acme_sh_renew_time_in_days: 30
 
 acme_sh_copy_certs_to_path: "/etc/ssl/ansible"
 
+acme_sh_default_ocsp: True
+
 acme_sh_list_domains: True
 
 acme_sh_default_staging: True

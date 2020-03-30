@@ -119,6 +119,9 @@ acme_sh_copy_certs_to_path: "/etc/ssl/ansible"
 # You can disable this by setting it to False.
 acme_sh_list_domains: True
 
+# Do OCSP stapling by default
+acme_sh_default_ocsp: True
+
 # When set to False, it will use the live Let's Encrypt servers, so please make
 # sure everything works with staging True or you may find yourself rate limited.
 #
@@ -260,6 +263,8 @@ acme_sh_domains:
 #  - domains: ["example.com", "www.example.com", "admin.example.com"]
 #    # Use standalone mode instead of DNS.
 #    standalone: True
+#    # Force ocsp stapling
+#    ocsp: True
 #    # Optionally override the default staging variable. This overall pattern lets
 #    # you situationally override the defaults listed above for each domain list.
 #    staging: False
