@@ -5,7 +5,7 @@
     name: "{{ item }}"
     update_cache: True
     cache_valid_time: "{{ acme_sh_apt_cache_time }}"
-  loop: ["cron", "git", "wget", "socat"]
+  loop: ["cron", "git", "wget", "socat", "lexicon"]
 
 - name: Create git clone path
   file:
