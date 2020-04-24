@@ -6,7 +6,7 @@
     state: "directory"
     owner: "{{ acme_sh_become_user }}"
     group: "{{ acme_sh_become_user }}"
-    mode: "0755"
+    mode: "0750"
   loop: "{{ acme_sh_domains }}"
   loop_control:
     index_var: domains_index
