@@ -3,9 +3,8 @@
 - name: Install dependencies
   apt:
     name: "{{ item }}"
-    update_cache: True
-    cache_valid_time: "{{ acme_sh_apt_cache_time }}"
-  loop: ["cron", "git", "wget", "socat"]
+    state: "present"
+  loop: "{{ acme_sh_dependencies }}"
 
 - name: Create git clone path
   file:
